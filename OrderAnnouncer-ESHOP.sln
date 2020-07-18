@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderAnnouncer-ESHOP", "OrderAnnouncer-ESHOP\OrderAnnouncer-ESHOP.csproj", "{9B4B0A7C-71A3-4260-92B9-55455839A7DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LahoreSocketAsync", "LahoreSocketAsync\LahoreSocketAsync.csproj", "{D2ADBA01-689E-4DD5-9C1B-E92FB76EA226}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9B4B0A7C-71A3-4260-92B9-55455839A7DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B4B0A7C-71A3-4260-92B9-55455839A7DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B4B0A7C-71A3-4260-92B9-55455839A7DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B4B0A7C-71A3-4260-92B9-55455839A7DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2ADBA01-689E-4DD5-9C1B-E92FB76EA226}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2ADBA01-689E-4DD5-9C1B-E92FB76EA226}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2ADBA01-689E-4DD5-9C1B-E92FB76EA226}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2ADBA01-689E-4DD5-9C1B-E92FB76EA226}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {16504920-6696-4DFD-ABDA-3709D85F5FED}
+	EndGlobalSection
+EndGlobal
