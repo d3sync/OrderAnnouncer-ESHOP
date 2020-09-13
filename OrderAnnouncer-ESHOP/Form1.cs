@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using static System.DateTime;
 using System.Net;
 using System.Net.Sockets;
+using System.Windows.Forms.VisualStyles;
 //using AsyncTcpServer;
 using LahoreSocketAsync;
 
@@ -36,8 +37,18 @@ namespace OrderAnnouncer_ESHOP
         {
             //DateTime now = new DateTime();
             DateTime now = DateTime.Now;
-            checkedListBox1.Items.Insert(0,
-                item: $"CUSTOMER NAME --- PRICE: 52.50 --- PLUS4U --- SIZE: No2 Time: {now:HH:mm:ss}");
+            //checkedListBox1.Items.Insert(0,item: $"CUSTOMER NAME --- PRICE: 52.50 --- PLUS4U --- SIZE: No2 Time: {now:HH:mm:ss}");
+            listView1.Items.Insert(0, "random order");
+            listView1.Items[0].Group = listView1.Groups[0];
+            ListViewItem.ListViewSubItem sbItem1 = new ListViewItem.ListViewSubItem();
+            ListViewItem.ListViewSubItem sbItem2 = new ListViewItem.ListViewSubItem();
+            ListViewItem.ListViewSubItem sbItem3 = new ListViewItem.ListViewSubItem();
+            sbItem1.Text = "Customer Name Test";
+            listView1.Items[0].SubItems.Insert(1, sbItem1);
+            sbItem2.Text = "23.50";
+            listView1.Items[0].SubItems.Insert(2, sbItem2);
+            sbItem3.Text = "Big Ass Box";
+            listView1.Items[0].SubItems.Insert(3, sbItem3);
         }
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -60,6 +71,7 @@ namespace OrderAnnouncer_ESHOP
         {
             int port = Convert.ToInt32(maskedTextBox1.Text);
             mServer.StartListeningForIncomingConnection();
+            conwindow.AppendText(string.Format("{0} - We started listening already {1}", Now, Environment.NewLine));
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -86,11 +98,72 @@ namespace OrderAnnouncer_ESHOP
         void HandleTextReceived(object sender, TextReceivedEventArgs trea)
         {
             if (trea.TextReceived != "????????????????????????????????????????????????????????????????")
-                checkedListBox1.Items.Insert(0,
-                string.Format("{0} --- {1}",
-                    DateTime.Now, trea.TextReceived,trea.ClientWhoSentText
-                    ));
+            {
+                if (trea.TextReceived.Contains("|"))
+                {
+                    //checkedListBox1.Items.Insert(0, string.Format("{0} --- {1}",DateTime.Now, trea.TextReceived,trea.ClientWhoSentText));
+                    string[] incomingMsg = trea.TextReceived.Split('|');
+                    switch (incomingMsg[0])
+                    {
+                        case "ANNOUNCE":
+                            listView1.Items.Insert(0, incomingMsg[1]);
+                            listView1.Items[0].Group = listView1.Groups[0];
+                            ListViewItem.ListViewSubItem sbItem1 = new ListViewItem.ListViewSubItem();
+                            ListViewItem.ListViewSubItem sbItem2 = new ListViewItem.ListViewSubItem();
+                            ListViewItem.ListViewSubItem sbItem3 = new ListViewItem.ListViewSubItem();
+                            sbItem1.Text = incomingMsg[2];
+                            listView1.Items[0].SubItems.Insert(1, sbItem1);
+                            sbItem2.Text = incomingMsg[3];
+                            listView1.Items[0].SubItems.Insert(2, sbItem2);
+                            sbItem3.Text = incomingMsg[4];
+                            listView1.Items[0].SubItems.Insert(3, sbItem3);
+                            break;
+                        case "CLEANSERVED":
+                            for (int i = 0; i < listView1.Items.Count; i++)
+                            {
+                                int ii = 1;
+                                if (listView1.Items[i].Group == listView1.Groups[1])
+                                {
+                                    listView1.Items[i].Remove();
+                                }
+                                ii++;
+                            }
+                            break;
+                    }
+                }
+            }
 
+
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            button1.PerformClick();
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            var selectedIndex = listView1.SelectedItems;
+            try
+            {
+               // ListViewItem currItem = new ListViewItem(selectedIndex.ToString());
+                //var lGroups = listView1.Groups.GetEnumerator().MoveNext();
+                //.Group = lGroups.
+                //listView1.Items.Add(listView1.SelectedItem);
+                //listView1.View = View.Details;
+                //ListView.SelectedListViewItemCollection.Group = 
+                //checkedListBox1.Items.RemoveAt(selectedIndex);
+                listView1.SelectedItems[0].Group = listView1.Groups[1];
+            }
+            catch
+            {
+            }
         }
     }
 }

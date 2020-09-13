@@ -147,7 +147,7 @@ namespace LahoreSocketAsync
                 stream = paramClient.GetStream();
                 reader = new StreamReader(stream,Encoding.UTF8);
 
-                char[] buff = new char[64];
+                char[] buff = new char[512];
 
                 while (KeepRunning)
                 {
